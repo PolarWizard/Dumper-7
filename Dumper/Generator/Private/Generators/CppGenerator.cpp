@@ -44,7 +44,7 @@ std::string CppGenerator::MakeMemberString(const std::string& Type, const std::s
 	}
 	else
 	{
-		NumSpacesToComment = 50 - (Type.length() - 45);
+		NumSpacesToComment = static_cast<int>(50 - (Type.length() - 45));
 	}
 
 	return std::format("\t{:{}} {:{}} // {}\n", Type, 45, Name + ";", NumSpacesToComment, std::move(Comment));
@@ -126,7 +126,7 @@ std::string CppGenerator::GenerateMembers(const StructWrapper& Struct, const Mem
 		/* Padding between two bitfields at different byte-offsets */
 		if (CurrentPropertyEnd > PrevPropertyEnd && bLastPropertyWasBitField && bIsBitField && PrevBitPropertyEndBit < PrevNumBitsInUnderlayingType && !bIsUnion)
 		{
-			OutMembers += GenerateBitPadding(PrevBitPropertySize, PrevBitPropertyEndBit, PrevBitPropertyOffset, PrevNumBitsInUnderlayingType - PrevBitPropertyEndBit, "Fixing Bit-Field Size For New Byte [ Dumper-7 ]");
+			OutMembers += GenerateBitPadding(PrevBitPropertySize, PrevBitPropertyEndBit, PrevBitPropertyOffset, static_cast<int32>(PrevNumBitsInUnderlayingType - PrevBitPropertyEndBit), "Fixing Bit-Field Size For New Byte [ Dumper-7 ]");
 			PrevBitPropertyEndBit = 0;
 		}
 
@@ -3798,7 +3798,7 @@ ClassType* GetDefaultObjImpl()
 	{
 #undef max
 		const auto& ObjectsArrayLayout = Off::FUObjectArray::FixedLayout;
-		const int32 ObjectArraySize = std::max({ ObjectsArrayLayout.ObjectsOffset + sizeof(void*), ObjectsArrayLayout.NumObjectsOffset + sizeof(int), ObjectsArrayLayout.MaxObjectsOffset + sizeof(int),});
+		const int32 ObjectArraySize = static_cast<int32>(std::max({ ObjectsArrayLayout.ObjectsOffset + sizeof(void*), ObjectsArrayLayout.NumObjectsOffset + sizeof(int), ObjectsArrayLayout.MaxObjectsOffset + sizeof(int),}));
 #define max(A, B) (A > B ? A : B)
 
 		// Start class 'TUObjectArray'
@@ -3872,13 +3872,13 @@ R"({
 
 #undef max
 		const auto& ObjectsArrayLayout = Off::FUObjectArray::ChunkedFixedLayout;
-		const int32 ObjectArraySize = std::max({
+		const int32 ObjectArraySize = static_cast<int32>(std::max({
 			ObjectsArrayLayout.ObjectsOffset + sizeof(void*),
 			ObjectsArrayLayout.MaxElementsOffset + sizeof(void*),
 			ObjectsArrayLayout.NumElementsOffset + sizeof(int),
 			ObjectsArrayLayout.MaxChunksOffset + sizeof(int),
 			ObjectsArrayLayout.NumChunksOffset + sizeof(int)
-		});
+		}));
 #define max(A, B) (A > B ? A : B)
 
 		// Start class 'TUObjectArray'

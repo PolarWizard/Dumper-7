@@ -54,7 +54,7 @@ const StringEntry& HashStringTable::GetStringEntry(int32 BucketIndex, int32 InBu
 
     const StringBucket& Bucket = Buckets[BucketIndex];
 
-    assert((InBucketIndex > 0 && InBucketIndex < Bucket.Size) && "InBucketIndex was out of range!");
+    assert((InBucketIndex > 0 && static_cast<uint32>(InBucketIndex) < Bucket.Size) && "InBucketIndex was out of range!");
 
     return *reinterpret_cast<StringEntry*>(Bucket.Data + InBucketIndex);
 }

@@ -427,7 +427,7 @@ DSGen::EnumHolder DumpspaceGenerator::GenerateEnum(const EnumWrapper& Enum)
 	Enumerator.enumMembers.reserve(Enum.GetNumMembers());
 		
 	for (const EnumCollisionInfo& Info : Enum.GetMembers())
-		Enumerator.enumMembers.emplace_back(Info.GetUniqueName(), Info.GetValue());
+		Enumerator.enumMembers.emplace_back(Info.GetUniqueName(), static_cast<int>(Info.GetValue()));
 
 	return Enumerator;
 }

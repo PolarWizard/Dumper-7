@@ -61,7 +61,7 @@ void Off::InSDK::ProcessEvent::InitPE_Windows()
 	if (ProcessEventAddr)
 	{
 		Off::InSDK::ProcessEvent::PEIndex = ProcessEventIdx;
-		Off::InSDK::ProcessEvent::PEOffset = Platform::GetOffset(ProcessEventAddr);
+		Off::InSDK::ProcessEvent::PEOffset = static_cast<int32>(Platform::GetOffset(ProcessEventAddr));
 
 		std::cerr << std::format("PE-Offset: 0x{:X}\n", Off::InSDK::ProcessEvent::PEOffset);
 		std::cerr << std::format("PE-Index: 0x{:X}\n\n", ProcessEventIdx);
@@ -79,7 +79,7 @@ void Off::InSDK::ProcessEvent::InitPE(const int32 Index, const char* const Modul
 
 	void** VFT = *reinterpret_cast<void***>(ObjectArray::GetByIndex(0).GetAddress());
 
-	Off::InSDK::ProcessEvent::PEOffset = Platform::GetOffset(VFT[Off::InSDK::ProcessEvent::PEIndex], ModuleName);
+	Off::InSDK::ProcessEvent::PEOffset = static_cast<int32>(Platform::GetOffset(VFT[Off::InSDK::ProcessEvent::PEIndex], ModuleName));
 
 	std::cerr << std::format("PE-Offset: 0x{:X}\n", Off::InSDK::ProcessEvent::PEOffset);
 }
@@ -134,7 +134,7 @@ void Off::InSDK::World::InitGWorld()
 		/* Pointer to UWorld* couldn't be found */
 		if (Result)
 		{
-			Off::InSDK::World::GWorld = Platform::GetOffset(Result);
+			Off::InSDK::World::GWorld = static_cast<int32>(Platform::GetOffset(Result));
 			std::cerr << std::format("GWorld-Offset: 0x{:X}\n\n", Off::InSDK::World::GWorld);
 			break;
 		}
