@@ -24,6 +24,10 @@ file(GLOB_RECURSE CPP_SOURCES
 
 add_library(${PROJECT_NAME} SHARED ${CPP_SOURCES})
 
+# Embeds the Rust SDK runtime (Dumper/Generator/RustRuntime/rt/*.rs) as RCDATA resources
+enable_language(RC)
+target_sources(${PROJECT_NAME} PRIVATE "Dumper/Generator/RustRuntime/RustRuntime.rc")
+
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 # Include directories

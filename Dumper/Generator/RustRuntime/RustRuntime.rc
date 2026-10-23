@@ -1,0 +1,10 @@
+// The Rust SDK runtime, embedded into the DLL and written to RustSDK/src/rt by RustGenerator::WriteRuntimeFiles.
+// Keep this list in sync with RustGenerator.cpp.
+
+RT_MOD          RCDATA "rt/mod.rs"
+RT_CONTAINERS   RCDATA "rt/containers.rs"
+RT_FFI          RCDATA "rt/ffi.rs"
+RT_MATH         RCDATA "rt/math.rs"
+RT_OBJECT       RCDATA "rt/object.rs"
+RT_STRINGS      RCDATA "rt/strings.rs"
+RT_TYPES        RCDATA "rt/types.rs"

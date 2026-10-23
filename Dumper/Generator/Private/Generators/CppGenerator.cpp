@@ -3792,7 +3792,7 @@ ClassType* GetDefaultObjImpl()
 		return reinterpret_cast<uint8*>(ObjPtr);
 	})";
 
-	std::string DecryptionStrToUse = ObjectArray::DecryptionLambdaStr.empty() ? DefaultDecryption : std::move(ObjectArray::DecryptionLambdaStr);
+	std::string DecryptionStrToUse = ObjectArray::DecryptionLambdaStr.empty() ? DefaultDecryption : ObjectArray::DecryptionLambdaStr;
 //#error Fix this and fix alignof(UObject) == 0x1
 	if (Off::InSDK::ObjArray::ChunkSize <= 0)
 	{

@@ -7,6 +7,7 @@ target("Dumper-7")
 
     add_files("Dumper/**.cpp")
     add_files("Dumper/**.c")
+    add_files("Dumper/Generator/RustRuntime/RustRuntime.rc") -- Rust SDK runtime, embedded as RCDATA
 
     add_includedirs("Dumper", {public = true})
     add_includedirs("Dumper/Utils", {public = true})

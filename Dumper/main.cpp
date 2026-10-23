@@ -7,6 +7,7 @@
 #include "Generators/MappingGenerator.h"
 #include "Generators/IDAMappingGenerator.h"
 #include "Generators/DumpspaceGenerator.h"
+#include "Generators/RustGenerator.h"
 
 #include "Generators/Generator.h"
 
@@ -64,6 +65,11 @@ DWORD MainThread(HMODULE Module)
 	Generator::Generate<MappingGenerator>();
 	Generator::Generate<IDAMappingGenerator>();
 	Generator::Generate<DumpspaceGenerator>();
+
+	if (RustGenerator::IsSupported())
+		Generator::Generate<RustGenerator>();
+	else
+		std::cerr << "Skipped RustSDK: it only supports UE5 x64 games.\n";
 
 	auto DumpFinishTime = std::chrono::high_resolution_clock::now();
 

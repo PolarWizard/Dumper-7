@@ -80,6 +80,9 @@
     <ClCompile Include="Generator\Private\Generators\IDAMappingGenerator.cpp">
       <Filter>Generator\Private\Generators</Filter>
     </ClCompile>
+    <ClCompile Include="Generator\Private\Generators\RustGenerator.cpp">
+      <Filter>Generator\Private\Generators</Filter>
+    </ClCompile>
     <ClCompile Include="Generator\Private\SharedPredefinedMembers.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -265,9 +268,22 @@
     <ClInclude Include="Generator\Public\Generators\IDAMappingGenerator.h">
       <Filter>Generator\Public\Generators</Filter>
     </ClInclude>
+    <ClInclude Include="Generator\Public\Generators\RustGenerator.h">
+      <Filter>Generator\Public\Generators</Filter>
+    </ClInclude>
     <ClInclude Include="Generator\Public\Generators\IDAMappingLayouts.h">
       <Filter>Generator\Public\Generators</Filter>
     </ClInclude>
     <ClInclude Include="Generator\Public\SharedPredefinedMembers.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Generator\RustRuntime\RustRuntime.rc" />
+    <None Include="Generator\RustRuntime\rt\mod.rs" />
+    <None Include="Generator\RustRuntime\rt\containers.rs" />
+    <None Include="Generator\RustRuntime\rt\ffi.rs" />
+    <None Include="Generator\RustRuntime\rt\math.rs" />
+    <None Include="Generator\RustRuntime\rt\object.rs" />
+    <None Include="Generator\RustRuntime\rt\strings.rs" />
+    <None Include="Generator\RustRuntime\rt\types.rs" />
   </ItemGroup>
 </Project>
